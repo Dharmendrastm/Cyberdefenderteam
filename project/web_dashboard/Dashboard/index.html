@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IoT Device Security Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="hacker-header">
+    <div class="container">
+      <h1><span class="green-text">[+] </span>IoT Security Monitor</h1>
+      <nav>
+        <a href="#">Dashboard</a>
+        <a href="#">Devices</a>
+        <a href="#">Logs</a>
+        <a href="#">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="stats">
+      <div class="card">
+        <h3>Devices Monitored</h3>
+        <p>14</p>
+      </div>
+      <div class="card">
+        <h3>Threats Detected</h3>
+        <p>3</p>
+      </div>
+      <div class="card">
+        <h3>Network Traffic</h3>
+        <p>1.2 MB/s</p>
+      </div>
+    </section>
+
+    <!-- Add Device -->
+    <section class="add-device">
+      <h2><span class="green-text">[+] </span>Add New Device</h2>
+      <input type="text" id="device-name" placeholder="Enter device name..." />
+      <button id="add-device-btn">Add Device</button>
+    </section>
+
+    <!-- Real-Time Alerts -->
+    <section id="alert-box" class="alerts-section">
+      <h2><span class="green-text">[!] </span>Real-Time Alerts</h2>
+      <!-- Real-time alerts will be injected here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="hacker-footer">
+    <p>&copy; 2025 IoT Security | Developed by <span class="green-text">Dharmendra</span></p>
+  </footer>
+
+  <!-- Socket.io -->
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    // Listen for alerts
+    socket.on('new_alert', function(data) {
+      const alertBox = document.getElementById('alert-box');
+      const alert = document.createElement('div');
+      alert.classList.add('alert');
+      alert.innerText = '[ALERT] Device: ' + data.device + ' - ' + data.msg;
+      alertBox.appendChild(alert);
+    });
+
+    // Add device handler (this can later send to backend)
+    document.getElementById('add-device-btn').addEventListener('click', function () {
+      const deviceName = document.getElementById('device-name').value;
+      if (deviceName.trim()) {
+        const alertBox = document.getElementById('alert-box');
+        const alert = document.createElement('div');
+        alert.classList.add('alert');
+        alert.innerText = '[INFO] New device "' + deviceName + '" added to monitoring.';
+        alertBox.appendChild(alert);
+        document.getElementById('device-name').value = '';
+      }
+    });
+  </script>
+</body>
+</html>

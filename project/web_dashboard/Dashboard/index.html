@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IoT Device Security Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="hacker-header">
+    <div class="container">
+      <h1><span class="green-text">[+] </span>IoT Security Monitor</h1>
+      <nav>
+        <a href="#">Dashboard</a>
+        <a href="device.html">Devices</a>
+        <a href="IoT threats.html">IoT Threats</a>
+        <a href="blocksip.html">Block IP</a>
+        <a href="login.html" class="button-link">Logout</a>
+      </nav>
+    </div>
+  
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="stats">
+      <div class="card">
+        <a href="devicemonitor.html"><h3>Devices Monitored</h3><a/>
+        <p>9</p>
+      </div>
+      <div class="card">
+        <a href="IoT threats.html"><h3>IoT Threats</h3></a>
+        <p>1</p>
+      </div>
+      <div class="card">
+       <a href="networktraffic.html"><h3>Network Traffic</h3></a>
+        <p>1.2 MB/s</p>
+      </div>
+    </section>
+
+    <!-- Add Device -->
+    <section class="add-device">
+      <h2><span class="green-text">[+] </span>Add New Device</h2>
+      <input type="text" id="device-name" placeholder="Enter device name..." />
+      <input type="text" id="device-ip" placeholder="Enter device IP..." />
+      <button id="add-device-btn">Add Device</button>
+    </section>
+
+    <!-- Real-Time Alerts -->
+    <section id="alert-box" class="alerts-section">
+      <h2><span class="green-text">[!] </span>Real-Time Alerts</h2>
+      <!-- Real-time alerts will be injected here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="hacker-footer">
+    <p>&copy; 2025 IoT Security | Developed by <span class="green-text">CyberDefender</span></p>
+  </footer>
+
+  <!-- Socket.io -->
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    // Listen for alerts
+    socket.on('new_alert', function(data) {
+      const alertBox = document.getElementById('alert-box');
+      const alert = document.createElement('div');
+      alert.classList.add('alert');
+      alert.innerHTML = `<strong>[ALERT]</strong> Device: <span class="device-name">${data.device}</span> (IP: <span class="device-ip">${data.ip}</span>) - ${data.msg}`;
+      alertBox.appendChild(alert);
+    });
+
+    // Add device handler (this can later send to backend)
+    document.getElementById('add-device-btn').addEventListener('click', function () {
+      const deviceName = document.getElementById('device-name').value;
+      const deviceIp = document.getElementById('device-ip').value;
+      if (deviceName.trim() && deviceIp.trim()) {
+        const alertBox = document.getElementById('alert-box');
+        const alert = document.createElement('div');
+        alert.classList.add('alert');
+        alert.innerText = `[INFO] New device "${deviceName}" (IP: ${deviceIp}) added to monitoring.`;
+        alertBox.appendChild(alert);
+        document.getElementById('device-name').value = '';
+        document.getElementById('device-ip').value = '';
+      }
+    });
+  </script>
+</body>
+</html>

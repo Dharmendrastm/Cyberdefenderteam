@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  perspective: 1000px; /* Add depth */
+}
+
+.green-text {
+  color: #39ff14;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.hacker-header {
+  background: #161b22;
+  padding: 1em 0;
+  border-bottom: 2px solid #39ff14;
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.1);
+  transform: translateZ(10px);
+}
+
+.hacker-header h1 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #c9d1d9;
+}
+
+nav {
+  margin-top: 0.5em;
+}
+
+nav a {
+  color: #39ff14;
+  margin-right: 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  transform: scale(1.1) translateZ(5px);
+}
+
+/* Dashboard Stats */
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 2em;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  background-color: #1f2937;
+  padding: 1em;
+  border: 1px solid #39ff14;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(57, 255, 20, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateX(4deg) rotateY(4deg);
+  box-shadow: 0 16px 30px rgba(57, 255, 20, 0.4);
+}
+
+.card h3 {
+  margin-bottom: 0.5em;
+  color: #39ff14;
+}
+
+/* Add Device */
+.add-device {
+  margin-top: 3em;
+  transform: translateZ(5px);
+}
+
+.add-device input,
+.add-device button {
+  padding: 10px;
+  margin-top: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  background-color: #161b22;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  border-radius: 5px;
+  outline: none;
+}
+
+.add-device button {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.add-device button:hover {
+  transform: scale(1.05);
+}
+
+/* Alerts */
+.alerts-section {
+  margin-top: 3em;
+}
+
+.alert {
+  background-color: #8b0000;
+  color: white;
+  padding: 1em;
+  margin-top: 10px;
+  border-left: 5px solid #ff0000;
+  border-radius: 4px;
+  animation: flicker 1s infinite alternate;
+  box-shadow: 0 0 10px red;
+  transform: translateZ(20px);
+}
+
+/* Footer */
+.hacker-footer {
+  text-align: center;
+  padding: 1em;
+  background: #161b22;
+  margin-top: 3em;
+  border-top: 2px solid #39ff14;
+  box-shadow: 0 -4px 10px rgba(0, 255, 0, 0.1);
+}
+
+/* Flicker animation for alerts */
+@keyframes flicker {
+  0% { opacity: 1; }
+  100% { opacity: 0.8; }
+}

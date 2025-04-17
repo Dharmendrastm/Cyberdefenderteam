@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blocked IPs - Real-Time Monitoring</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            color: #cc0000;
+        }
+
+        .blocked-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px auto 80px;
+            justify-content: center;
+        }
+
+        .ip-card {
+            background-color: #ffdddd;
+            border: 1px solid #ff4d4d;
+            border-left: 5px solid #ff1a1a;
+            padding: 15px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(255, 0, 0, 0.1);
+        }
+
+        .ip-card p {
+            margin: 5px 0;
+            color: #990000;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🚨 Real-Time IoT Security Monitor</h1>
+</header>
+
+<h2>🚫 Blocked IPs</h2>
+<div class="blocked-container">
+    <div class="ip-card">
+        <p><strong>IP:</strong> 192.168.0.102</p>
+        <p><strong>Reason:</strong> Anomaly Detected</p>
+        <p><strong>Timestamp:</strong> 2025-04-17 10:45:30</p>
+    </div>
+    <div class="ip-card">
+        <p><strong>IP:</strong> 10.0.0.15</p>
+        <p><strong>Reason:</strong> Suspicious Port Scan</p>
+        <p><strong>Timestamp:</strong> 2025-04-17 10:42:10</p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 CyberDefender | All rights reserved.
+</footer>
+
+</body>
+</html>
